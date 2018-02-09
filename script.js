@@ -14,7 +14,7 @@ var concert_id = url.searchParams.get("concert_id");
 var pathReference = storage.ref('json/' + concert_id + '.json');
 var jsonURL = "";
 var jsonObject;
-pathRereference.child('json/' + concert_id + '.json').getDownloadURL().then(
+pathReference.child('json/' + concert_id + '.json').getDownloadURL().then(
 function(url) {
 	jsonURL = url;
 });
@@ -36,7 +36,7 @@ document.getElementById("performers").innerHTML = ", ".join(jsonObject["performe
 document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
 document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
 var programPathReference = storage.ref(jsonObject["program-location"]);
-programPathRereference.child(jsonObject["program-location"]).getDownloadURL().then(
+programPathReference.child(jsonObject["program-location"]).getDownloadURL().then(
 function(url) {
 	document.getElementById("pdf-viewer").src = "http://docs.google.com/gview?url=" + url + "&embedded=true";
 });

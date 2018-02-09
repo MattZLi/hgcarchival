@@ -29,7 +29,7 @@ xmlhttp.open("GET", jsonURL, true);
 xmlhttp.send();
 document.getElementById("title").innerHTML = jsonObject["name"];
 var dateFormat = require('dateformat');
-document.getElementById("date").innerHTML = dateFormat(new Date(jsonObject["date"]), "dddd, mmmm dS, yyyy);
+//document.getElementById("date").innerHTML = dateFormat(new Date(jsonObject["date"]), "dddd, mmmm dS, yyyy);
 document.getElementById("venue").innerHTML = jsonObject["venue"];
 document.getElementById("conductor").innerHTML = jsonObject["conductor"];
 document.getElementById("performers").innerHTML = ", ".join(jsonObject["performers"]);

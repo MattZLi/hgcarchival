@@ -3,12 +3,26 @@
 <html lang="en">
     <head>
         <title>HGC Archival Demo</title>
-
-
     </head>
     <body>
-        <h1>{{ Title }}</h1>
+        <h1 id="title"></h1>
+	<ul id="info">
+		<li class="info" id="date"></li>
+		<li class="info" id="venue"></li>
+		<li class="info" id="conductor"></li>
+		<li class="info" id="performers"></li>
+	</ul>
+	<p id="concert-blurb"></p>
+	<p id="piece-blurb"></p>
 
+	<h2>Concert Program</h2>
+	<iframe id="pdf-viewer" src=""></iframe>
+
+	<h2>Piece Recording</h2>
+	<audio controls id="audio-wrapper">
+		<source id="audio-source" src="" type="">
+		Your browser does not support the audio element.
+	</audio>
     </body>
 
 </html>

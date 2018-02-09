@@ -13,7 +13,7 @@ var url = new URL(url_string);
 var concert_id = url.searchParams.get("concert_id");
 var pathReference = storage.ref('json/' + concert_id + '.json');
 var jsonURL = "";
-pathReference.child('json/' + concert_id + '.json').getDownloadURL().then(
+pathReference.child("").getDownloadURL().then(
 function(url) {
 	jsonURL = url;
 	var xmlhttp = new XMLHttpRequest();
@@ -32,7 +32,7 @@ function(url) {
 			document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
 			document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
 			var programPathReference = storage.ref(jsonObject["program-location"]);
-			programPathReference.child(jsonObject["program-location"]).getDownloadURL().then(
+			programPathReference.child("").getDownloadURL().then(
 			function(url) {
 				document.getElementById("pdf-viewer").src = "http://docs.google.com/gview?url=" + url + "&embedded=true";
 			});

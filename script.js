@@ -1,12 +1,3 @@
-var config = {
-	apiKey: "AIzaSyDdCWD8VaS_ZzBBtJ7E8zbiy287mkbdteU",
-	authDomain: "hgc-archival-demo.firebaseapp.com",
-	databaseURL: "https://hgc-archival-demo.firebaseio.com",
-	projectId: "hgc-archival-demo",
-	storageBucket: "hgc-archival-demo.appspot.com",
-	messagingSenderId: "161538429182"
-};
-firebase.initializeApp(config);
 var storage = firebase.storage();
 var url_string = window.location.href;
 var url = new URL(url_string);

@@ -18,7 +18,7 @@ function(url) {
 			document.getElementById("date").innerHTML = new Date(jsonObject["date"]).toString("dddd, MMMM dS, yyyy");
 			document.getElementById("venue").innerHTML = jsonObject["venue"];
 			document.getElementById("conductor").innerHTML = jsonObject["conductor"];
-			document.getElementById("performers").innerHTML = ", ".join(jsonObject["performers"]);
+			document.getElementById("performers").innerHTML = jsonObject["performers"].join(", ");
 			document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
 			document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
 			var programPathReference = storage.ref("/" + jsonObject["program-location"].split('/')[0]);

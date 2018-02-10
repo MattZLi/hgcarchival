@@ -28,7 +28,8 @@ function(url) {
                 document.getElementById("pdf-viewer-ii").src = u;
                 document.getElementById("pdf-viewer-iii").href = u;
 			});
-            var audioPathReference = storage.ref("/" + jsonObject["mp3-locations"].split('/')[2]).getDownloadURL().then(
+            var audioPathReference = storage.ref("/" + jsonObject["mp3-locations"].split('/').slice(0,2).join('/'));
+            audioPathReference.child(jsonObject["mp3-locations"].split('/')[2]).getDownloadURL().then(
             function(v) {
                 document.getElementById("audio-source").src = v;
             });

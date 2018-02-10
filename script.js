@@ -14,29 +14,29 @@ var concert_id = url.searchParams.get("concert_id");
 var pathReference = storage.ref('json/' + concert_id + '.json');
 var jsonURL = "";
 pathReference.child("").getDownloadURL().then(
-function(url) {
-	jsonURL = url;
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var myObj = JSON.parse(this.responseText);
-			jsonObject = myObj;
-			xmlhttp.open("GET", jsonURL, true);
-			xmlhttp.send();
-			document.getElementById("title").innerHTML = jsonObject["name"];
-			var dateFormat = require('dateformat');
-			//document.getElementById("date").innerHTML = dateFormat(new Date(jsonObject["date"]), "dddd, mmmm dS, yyyy);
-			document.getElementById("venue").innerHTML = jsonObject["venue"];
-			document.getElementById("conductor").innerHTML = jsonObject["conductor"];
-			document.getElementById("performers").innerHTML = ", ".join(jsonObject["performers"]);
-			document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
-			document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
-			var programPathReference = storage.ref(jsonObject["program-location"]);
-			programPathReference.child("").getDownloadURL().then(
-			function(url) {
-				document.getElementById("pdf-viewer").src = "http://docs.google.com/gview?url=" + url + "&embedded=true";
-			});
-		}
-	};
+	function(url) {
+		jsonURL = url;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				var myObj = JSON.parse(this.responseText);
+				jsonObject = myObj;
+				xmlhttp.open("GET", jsonURL, true);
+				xmlhttp.send();
+				document.getElementById("title").innerHTML = jsonObject["name"];
+				var dateFormat = require('dateformat');
+				//document.getElementById("date").innerHTML = dateFormat(new Date(jsonObject["date"]), "dddd, mmmm dS, yyyy);
+				document.getElementById("venue").innerHTML = jsonObject["venue"];
+				document.getElementById("conductor").innerHTML = jsonObject["conductor"];
+				document.getElementById("performers").innerHTML = ", ".join(jsonObject["performers"]);
+				document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
+				document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
+				var programPathReference = storage.ref(jsonObject["program-location"]);
+				programPathReference.child("").getDownloadURL().then(
+				function(url) {
+					document.getElementById("pdf-viewer").src = "http://docs.google.com/gview?url=" + url + "&embedded=true";
+				});
+			}
+		};
 });
 

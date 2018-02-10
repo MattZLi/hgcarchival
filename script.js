@@ -32,6 +32,9 @@ function(url) {
             audioPathReference.child(jsonObject["mp3-locations"].split('/')[2]).getDownloadURL().then(
             function(v) {
                 document.getElementById("audio-source").src = v;
+                document.getElementById("audio-controls").load();
+                document.getElementById("audio-source").load();
+                document.getElementById("audio-controls").load();
             });
         };
 	}

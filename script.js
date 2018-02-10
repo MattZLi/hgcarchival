@@ -2,7 +2,7 @@ var storage = firebase.storage();
 var url_string = window.location.href;
 var url = new URL(url_string);
 var concert_id = url.searchParams.get("concert_id");
-var pathReference = storage.ref('json');
+var pathReference = storage.ref('/json');
 var jsonURL = "";
 console.log(concert_id);
 pathReference.child(concert_id + '.json').getDownloadURL().then(
@@ -22,7 +22,7 @@ function(url) {
 			document.getElementById("performers").innerHTML = ", ".join(jsonObject["performers"]);
 			document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
 			document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
-			var programPathReference = storage.ref(jsonObject["program-location"].split('/')[0]);
+			var programPathReference = storage.ref("/" + jsonObject["program-location"].split('/')[0]);
 			programPathReference.child(jsonObject["program-location"].split('/')[1]).getDownloadURL().then(
 			function(url) {
 				document.getElementById("pdf-viewer").src = "http://docs.google.com/gview?url=" + url + "&embedded=true";

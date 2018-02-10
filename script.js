@@ -24,7 +24,9 @@ function(url) {
 			var programPathReference = storage.ref("/" + jsonObject["program-location"].split('/').slice(0,2).join('/'));
 			programPathReference.child(jsonObject["program-location"].split('/')[2]).getDownloadURL().then(
 			function(u) {
-				document.getElementById("pdf-viewer").href = u; 
+				document.getElementById("pdf-viewer").data = u;
+                document.getElementById("pdf-viewer-ii").data = u;
+                document.getElementById("pdf-viewer-iii").data = u;
 			});
 		}
 	};

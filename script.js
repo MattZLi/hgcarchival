@@ -23,21 +23,21 @@ function(url) {
 			var myObj = JSON.parse(this.responseText);
 			console.log(myObj);
 			jsonObject = myObj;
+			document.getElementById("title").innerHTML = jsonObject["name"];
+			var dateFormat = require('dateformat');
+			//document.getElementById("date").innerHTML = dateFormat(new Date(jsonObject["date"]), "dddd, mmmm dS, yyyy);
+			document.getElementById("venue").innerHTML = jsonObject["venue"];
+			document.getElementById("conductor").innerHTML = jsonObject["conductor"];
+			document.getElementById("performers").innerHTML = ", ".join(jsonObject["performers"]);
+			document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
+			document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
+			var programPathReference = storage.ref(jsonObject["program-location"].split('/')[0]);
+			programPathReference.child(jsonObject["program-location"].split('/')[1]).getDownloadURL().then(
+			function(url) {
+				document.getElementById("pdf-viewer").src = "http://docs.google.com/gview?url=" + url + "&embedded=true";
+			});
 		}
 	};
 	xmlhttp.open("GET", jsonURL, true);
 	xmlhttp.send();
-	document.getElementById("title").innerHTML = jsonObject["name"];
-	var dateFormat = require('dateformat');
-	//document.getElementById("date").innerHTML = dateFormat(new Date(jsonObject["date"]), "dddd, mmmm dS, yyyy);
-	document.getElementById("venue").innerHTML = jsonObject["venue"];
-	document.getElementById("conductor").innerHTML = jsonObject["conductor"];
-	document.getElementById("performers").innerHTML = ", ".join(jsonObject["performers"]);
-	document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
-	document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
-	var programPathReference = storage.ref(jsonObject["program-location"].split('/')[0]);
-	programPathReference.child(jsonObject["program-location"].split('/')[1]).getDownloadURL().then(
-	function(url) {
-		document.getElementById("pdf-viewer").src = "http://docs.google.com/gview?url=" + url + "&embedded=true";
-	});
 });

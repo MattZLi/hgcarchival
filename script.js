@@ -25,11 +25,15 @@ function(url) {
 			programPathReference.child(jsonObject["program-location"].split('/')[2]).getDownloadURL().then(
 			function(u) {
 				document.getElementById("pdf-viewer").data = u;
-                document.getElementById("pdf-viewer-ii").data = u;
-                document.getElementById("pdf-viewer-iii").data = u;
+                document.getElementById("pdf-viewer-ii").src = u;
+                document.getElementById("pdf-viewer-iii").href = u;
 			});
-		}
-	};
+            var audioPathReference = storage.ref("/" + jsonObject["mp3-locations"].split('/')[2]).getDownloadURL().then(
+            function(v) {
+                document.getElementById("audio-source").src = v;
+            });
+        };
+	}
 	xmlhttp.open("GET", jsonURL, true);
 	xmlhttp.send();
 });

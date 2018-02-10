@@ -13,6 +13,7 @@ var url = new URL(url_string);
 var concert_id = url.searchParams.get("concert_id");
 var pathReference = storage.ref('json/' + concert_id + '.json');
 var jsonURL = "";
+console.log(concert_id);
 pathReference.child("").getDownloadURL().then(
 function(url) {
 	jsonURL = url;
@@ -20,6 +21,7 @@ function(url) {
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var myObj = JSON.parse(this.responseText);
+			console.log(myObj);
 			jsonObject = myObj;
 			xmlhttp.open("GET", jsonURL, true);
 			xmlhttp.send();

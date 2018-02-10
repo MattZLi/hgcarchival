@@ -23,8 +23,8 @@ function(url) {
 			document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
 			var programPathReference = storage.ref("/" + jsonObject["program-location"].split('/').slice(0,2).join('/'));
 			programPathReference.child(jsonObject["program-location"].split('/')[2]).getDownloadURL().then(
-			function(url) {
-				document.getElementById("pdf-viewer").href = url; 
+			function(u) {
+				document.getElementById("pdf-viewer").href = u; 
 			});
 		}
 	};

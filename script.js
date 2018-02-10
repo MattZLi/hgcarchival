@@ -21,8 +21,8 @@ function(url) {
 			document.getElementById("performers").innerHTML = jsonObject["performers"].join(", ");
 			document.getElementById("concert-blurb").innerHTML = jsonObject["concert-blurb"];
 			document.getElementById("piece-blurb").innerHTML = jsonObject["piece-blurb"];
-			var programPathReference = storage.ref("/" + jsonObject["program-location"].split('/')[0]);
-			programPathReference.child(jsonObject["program-location"].split('/')[1]).getDownloadURL().then(
+			var programPathReference = storage.ref("/" + jsonObject["program-location"].split('/').slice(0,2).join('/'));
+			programPathReference.child(jsonObject["program-location"].split('/')[2]).getDownloadURL().then(
 			function(url) {
 				document.getElementById("pdf-viewer").src = "http://docs.google.com/gview?url=" + url + "&embedded=true";
 			});
